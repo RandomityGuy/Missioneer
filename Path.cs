@@ -4,20 +4,19 @@ using System.Text;
 
 namespace Missioneer
 {
-    public class Path : SimObject
+    public class Path : SimGroup
     {
-        public List<SimObject> PathItems;
         public Path()
         {
-            PathItems = new List<SimObject>();
+            GroupItems = new List<SimObject>();
             classname = "Path";
         }
         public override string Write()
         {
             StringBuilder Code = new StringBuilder();
-            Code.AppendLine(IndentLevel.GetIndent() + "new Path(" + name + ") {");
+            Code.AppendLine(IndentLevel.GetIndent() + "new Path(" + objname + ") {");
             IndentLevel.indentLevel++;
-            foreach (var item in PathItems)
+            foreach (var item in GroupItems)
             {
                 Code.AppendLine(item.Write());
             }
@@ -25,6 +24,6 @@ namespace Missioneer
             Code.AppendLine(IndentLevel.GetIndent() + "};");
             return Code.ToString(); //End of chapter
         }
-        public void Add(SimObject obj) => PathItems.Add(obj);
+        public void Add(SimObject obj) => GroupItems.Add(obj);
     }
 }

@@ -64,7 +64,7 @@ namespace Missioneer.ObjectConstructors
         {
             var temp = new Trigger(new Vector(Pos), AngAxis.Identity, new Vector("1 1 1"), "DestinationTrigger")
             {
-                name = name
+                objname = name
             };
             return temp;
         }

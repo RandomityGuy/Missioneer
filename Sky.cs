@@ -15,7 +15,18 @@ namespace Missioneer
         public const string Blender4 = "~/data/skies_pq/Blender4/blender4.dml";
         public const string Cloudy = "~/data/skies_pq/Cloudy/cloudy.dml";
         public const string Wave = "~/data/skies_pq/Blender1/wave.dml";
-        public string Skybox { get; private set; }
+        public string Skybox
+        {
+            get
+            {
+                return MaterialList;
+            }
+            private set
+            {
+                MaterialList = value;
+            }
+        }
+        public string MaterialList;
         public Sky(string skybox = Blender1)
         {
             Position = new Vector("336 136 0");
@@ -34,7 +45,7 @@ namespace Missioneer
         public override string Write()
         {
             StringBuilder Code = new StringBuilder();
-            Code.AppendLine(IndentLevel.GetIndent() + "new Sky(" + name + ") {");
+            Code.AppendLine(IndentLevel.GetIndent() + "new Sky(" + objname + ") {");
             IndentLevel.indentLevel++;
             Code.AppendLine(IndentLevel.GetIndent() + "position = \"" + Position.ToString() + "\";");
             Code.AppendLine(IndentLevel.GetIndent() + "rotation = \"" + Rotation.ToString() + "\";");

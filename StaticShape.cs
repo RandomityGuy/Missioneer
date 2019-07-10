@@ -11,7 +11,7 @@ namespace Missioneer
         public override string Write()
         {
             StringBuilder Code = new StringBuilder();
-            Code.AppendLine(IndentLevel.GetIndent() + "new StaticShape(" + name + ") {");
+            Code.AppendLine(IndentLevel.GetIndent() + "new StaticShape(" + objname + ") {");
             IndentLevel.indentLevel++;
             Code.AppendLine(IndentLevel.GetIndent()+"position = \"" + Position.ToString() + "\";");
             Code.AppendLine(IndentLevel.GetIndent()+"rotation = \"" + Rotation.ToString() + "\";");

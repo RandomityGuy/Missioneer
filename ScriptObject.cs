@@ -13,13 +13,13 @@ namespace Missioneer
         public ScriptObject(string name)
         {
             classname = "ScriptObject";
-            this.name = name;
+            this.objname = name;
         }
         public ScriptObject(Dictionary<string, string> dynamicfieldDict) => dynamicFields = dynamicfieldDict;
         public override string Write()
         {
             StringBuilder Code = new StringBuilder();
-            Code.AppendLine(IndentLevel.GetIndent() + "new ScriptObject(" + name + ") {");
+            Code.AppendLine(IndentLevel.GetIndent() + "new ScriptObject(" + objname + ") {");
             IndentLevel.indentLevel++;
             if (dynamicFields.Count != 0)
                 foreach (KeyValuePair<string, string> dynamicfield in dynamicFields) //dynamic field handling

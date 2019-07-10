@@ -6,28 +6,31 @@ using System.Threading.Tasks;
 using Missioneer.Utils;
 namespace Missioneer
 {
-    public class PathedInterior : SceneObject
+    public class PathedInterior : GameBase
     {
-        public string interiorFile;
-        public string interiorIndex="0";
+        public string interiorResource;
+        public int interiorIndex=0;
+        public Vector basePosition = new Vector();
+        public AngAxis baseRotation = new AngAxis();
+        public Vector baseScale = new Vector();
         public PathedInterior() => classname = "PathedInterior";
 
-        public PathedInterior(string interiorFile,string interiorIndex, Vector position, AngAxis rotation, Vector scale) : base(position,rotation,scale)
+        public PathedInterior(string interiorFile,int interiorIndex, Vector position, AngAxis rotation, Vector scale) : base(position,rotation,scale,"PathedDefault")
         {
             this.interiorIndex = interiorIndex;
             classname = "PathedInterior";
-            this.interiorFile = interiorFile;
+            this.interiorResource = interiorFile;
         }
         public override string Write()
         {
             StringBuilder Code = new StringBuilder();
-            Code.AppendLine(IndentLevel.GetIndent() + "new PathedInterior(" + name + ") {");
+            Code.AppendLine(IndentLevel.GetIndent() + "new PathedInterior(" + objname + ") {");
             IndentLevel.indentLevel++;
             Code.AppendLine(IndentLevel.GetIndent()+"position = \"" + Position.ToString()+"\";");
             Code.AppendLine(IndentLevel.GetIndent()+"rotation = \"" + Rotation.ToString() + "\";");
             Code.AppendLine(IndentLevel.GetIndent()+"scale = \"" + Scale.ToString() + "\";");
             Code.AppendLine(IndentLevel.GetIndent()+"datablock = \"PathedDefault\";");
-            Code.AppendLine(IndentLevel.GetIndent()+"interiorResource = \"" + interiorFile + "\";");
+            Code.AppendLine(IndentLevel.GetIndent()+"interiorResource = \"" + interiorResource + "\";");
             Code.AppendLine(IndentLevel.GetIndent()+"interiorIndex = \"" + interiorIndex + "\";");
             Code.AppendLine(IndentLevel.GetIndent()+"basePosition = \"" + Position.ToString() + "\";");
             Code.AppendLine(IndentLevel.GetIndent()+"baseRotation = \"" + Rotation.ToString() + "\";");

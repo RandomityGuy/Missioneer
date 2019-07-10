@@ -5,13 +5,14 @@ namespace Missioneer
 {
     public class Trigger : GameBase
     {
+        public string polyhedron;
         public Trigger(string datablock) : base(datablock) => classname = "Trigger";
         public Trigger() : base() => classname = "Trigger";
         public Trigger(Vector position, AngAxis rotation, Vector scale, string datablock) : base(position, rotation, scale, datablock) => classname = "Trigger";
         public override string Write()
         {
             StringBuilder Code = new StringBuilder();
-            Code.AppendLine(IndentLevel.GetIndent() + "new Trigger(" + name + ") {");
+            Code.AppendLine(IndentLevel.GetIndent() + "new Trigger(" + objname + ") {");
             IndentLevel.indentLevel++;
             Code.AppendLine(IndentLevel.GetIndent()+"position = \"" + Position.ToString() + "\";");
             Code.AppendLine(IndentLevel.GetIndent() + "rotation = \"" + Rotation.ToString() + "\";");

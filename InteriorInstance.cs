@@ -9,6 +9,7 @@ namespace Missioneer
     public class InteriorInstance : SceneObject
     {
         public string interiorFile;
+        public bool showTerrainInside = false;
         public InteriorInstance() => classname = "InteriorInstance";
 
         public InteriorInstance(string interiorFile, Vector position, AngAxis rotation, Vector scale) : base(position,rotation,scale)
@@ -19,7 +20,7 @@ namespace Missioneer
         public override string Write()
         {
             StringBuilder Code = new StringBuilder();
-            Code.AppendLine(IndentLevel.GetIndent() + "new InteriorInstance(" + name + ") {");
+            Code.AppendLine(IndentLevel.GetIndent() + "new InteriorInstance(" + objname + ") {");
             IndentLevel.indentLevel++;
             Code.AppendLine(IndentLevel.GetIndent()+"position = \"" + Position.ToString()+"\";");
             Code.AppendLine(IndentLevel.GetIndent()+"rotation = \"" + Rotation.ToString() + "\";");

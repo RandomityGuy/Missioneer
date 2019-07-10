@@ -10,9 +10,9 @@ namespace Missioneer
 {
     public class Sun : SceneObject
     {
-        public Vector Direction { get; private set; }
-        public string Color { get; private set; }
-        public string Ambient { get; private set; }
+        public Vector Direction;
+        public string Color;
+        public string Ambient;
         public Sun()
         {
             classname = "Sun";
@@ -23,7 +23,7 @@ namespace Missioneer
         public override string Write()
         {
             StringBuilder Code = new StringBuilder();
-            Code.AppendLine(IndentLevel.GetIndent() + "new Sun(" + name + ") {");
+            Code.AppendLine(IndentLevel.GetIndent() + "new Sun(" + objname + ") {");
             IndentLevel.indentLevel++;
             Code.AppendLine(IndentLevel.GetIndent() + "direction = \"" + Direction.ToString() + "\";");
             Code.AppendLine(IndentLevel.GetIndent() + "color = \"" + Color.ToString() + "\";");

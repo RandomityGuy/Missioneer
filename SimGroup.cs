@@ -15,7 +15,7 @@ namespace Missioneer
         public override string Write()
         {
             StringBuilder Code = new StringBuilder();
-            Code.AppendLine(IndentLevel.GetIndent() + "new SimGroup(" + name + ") {");
+            Code.AppendLine(IndentLevel.GetIndent() + "new SimGroup(" + objname + ") {");
             IndentLevel.indentLevel++;
             foreach (var item in GroupItems)
             {

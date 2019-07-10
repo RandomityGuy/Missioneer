@@ -24,7 +24,7 @@ namespace Missioneer
         public override string Write()
         {
             StringBuilder Code = new StringBuilder();
-            Code.AppendLine(IndentLevel.GetIndent() + "new Marker(" + name + ") {");
+            Code.AppendLine(IndentLevel.GetIndent() + "new Marker(" + objname + ") {");
             IndentLevel.indentLevel++;
             Code.AppendLine(IndentLevel.GetIndent()+"position = \"" + Position.ToString()+"\";");
             Code.AppendLine(IndentLevel.GetIndent()+"rotation = \"" + Rotation.ToString() + "\";");

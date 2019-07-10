@@ -17,22 +17,22 @@ namespace Missioneer.ObjectConstructors
         }
         public static void makePath(this GameBase obj,string from,string to,string timetonext="5000")
         {
-            var fromnode = new PathNode(new Vector(from), AngAxis.Identity, Vector.One, obj.GetHashCode().ToString() + "b", timetonext) { name = obj.GetHashCode().ToString() + "a" };
-            var tonode = new PathNode(new Vector(to), AngAxis.Identity, Vector.One, obj.GetHashCode().ToString() + "a", timetonext) { name = obj.GetHashCode().ToString() + "b" };
+            var fromnode = new PathNode(new Vector(from), AngAxis.Identity, Vector.One, obj.GetHashCode().ToString() + "b", timetonext) { objname = obj.GetHashCode().ToString() + "a" };
+            var tonode = new PathNode(new Vector(to), AngAxis.Identity, Vector.One, obj.GetHashCode().ToString() + "a", timetonext) { objname = obj.GetHashCode().ToString() + "b" };
             obj.Collection.Add(fromnode);
             obj.Collection.Collection.Add(tonode);
-            obj.dynamicFields.Add("path", fromnode.name);
+            obj.dynamicFields.Add("path", fromnode.objname);
         }
         public static void makePath(this GameBase obj, string from, string to, float speed=10)
         {
             var fromVector = new Vector(from);
             var toVector = new Vector(to);
             var timetonext = getDistance(fromVector, toVector) / speed;
-            var fromnode = new PathNode(fromVector, AngAxis.Identity, Vector.One, obj.GetHashCode().ToString() + "b", timetonext.ToString()) { name = obj.GetHashCode().ToString() + "a" };
-            var tonode = new PathNode(toVector, AngAxis.Identity, Vector.One, obj.GetHashCode().ToString() + "a", timetonext.ToString()) { name = obj.GetHashCode().ToString() + "b" };
+            var fromnode = new PathNode(fromVector, AngAxis.Identity, Vector.One, obj.GetHashCode().ToString() + "b", timetonext.ToString()) { objname = obj.GetHashCode().ToString() + "a" };
+            var tonode = new PathNode(toVector, AngAxis.Identity, Vector.One, obj.GetHashCode().ToString() + "a", timetonext.ToString()) { objname = obj.GetHashCode().ToString() + "b" };
             obj.Collection.Add(fromnode);
             obj.Collection.Collection.Add(tonode);
-            obj.dynamicFields.Add("path", fromnode.name);
+            obj.dynamicFields.Add("path", fromnode.objname);
         }
         public static void makePath(this GameBase obj,params string[] pathXYZ)
         {
@@ -42,17 +42,17 @@ namespace Missioneer.ObjectConstructors
                 PathNode node;
                 if (i == pathXYZ.Length - 1)
                 {
-                    node = new PathNode(new Vector(pathXYZ[i].GetWord(0) + " " + pathXYZ[i].GetWord(1) + " " + pathXYZ[i].GetWord(2)), AngAxis.Identity, Vector.One, pathXYZ[0].GetHashCode().ToString()) { name = pathXYZ[i].GetHashCode().ToString() };
+                    node = new PathNode(new Vector(pathXYZ[i].GetWord(0) + " " + pathXYZ[i].GetWord(1) + " " + pathXYZ[i].GetWord(2)), AngAxis.Identity, Vector.One, pathXYZ[0].GetHashCode().ToString()) { objname = pathXYZ[i].GetHashCode().ToString() };
                 }
                 else
-                    node = new PathNode(new Vector(pathXYZ[i].GetWord(0) + " " + pathXYZ[i].GetWord(1) + " " + pathXYZ[i].GetWord(2)), AngAxis.Identity, Vector.One, pathXYZ[i + 1].GetHashCode().ToString()) { name = pathXYZ[i].GetHashCode().ToString() };
+                    node = new PathNode(new Vector(pathXYZ[i].GetWord(0) + " " + pathXYZ[i].GetWord(1) + " " + pathXYZ[i].GetWord(2)), AngAxis.Identity, Vector.One, pathXYZ[i + 1].GetHashCode().ToString()) { objname = pathXYZ[i].GetHashCode().ToString() };
                 obj.Collection.Add(node);                              
             }
             obj.dynamicFields.Add("path", pathXYZ[0].GetHashCode().ToString());
         }
         public static void setPath(this GameBase obj,PathNode path)
         {
-            obj.dynamicFields["path"] = path.name;
+            obj.dynamicFields["path"] = path.objname;
         }
         public static void makePath(this GameBase obj,float speed, params string[] pathXYZ)
         {
@@ -65,14 +65,14 @@ namespace Missioneer.ObjectConstructors
                     var Pos = new Vector(pathXYZ[i].GetWord(0) + " " + pathXYZ[i].GetWord(1) + " " + pathXYZ[i].GetWord(2));
                     var toNext = new Vector(pathXYZ[0].GetWord(0) + " " + pathXYZ[0].GetWord(1) + " " + pathXYZ[0].GetWord(2));
                     var timetonext = getDistance(Pos, toNext);
-                    node = new PathNode(Pos, AngAxis.Identity, Vector.One, pathXYZ[0].GetHashCode().ToString(), timetonext.ToString()) { name = pathXYZ[i].GetHashCode().ToString() };
+                    node = new PathNode(Pos, AngAxis.Identity, Vector.One, pathXYZ[0].GetHashCode().ToString(), timetonext.ToString()) { objname = pathXYZ[i].GetHashCode().ToString() };
                 }
                 else
                 {
                     var Pos = new Vector(pathXYZ[i].GetWord(0) + " " + pathXYZ[i].GetWord(1) + " " + pathXYZ[i].GetWord(2));
                     var toNext = new Vector(pathXYZ[i+1].GetWord(0) + " " + pathXYZ[i+1].GetWord(1) + " " + pathXYZ[i+1].GetWord(2));
                     var timetonext = getDistance(Pos, toNext);
-                    node = new PathNode(new Vector(pathXYZ[i].GetWord(0) + " " + pathXYZ[i].GetWord(1) + " " + pathXYZ[i].GetWord(2)), AngAxis.Identity, Vector.One, pathXYZ[i + 1].GetHashCode().ToString(),timetonext.ToString()) { name = pathXYZ[i].GetHashCode().ToString() };
+                    node = new PathNode(new Vector(pathXYZ[i].GetWord(0) + " " + pathXYZ[i].GetWord(1) + " " + pathXYZ[i].GetWord(2)), AngAxis.Identity, Vector.One, pathXYZ[i + 1].GetHashCode().ToString(),timetonext.ToString()) { objname = pathXYZ[i].GetHashCode().ToString() };
                 }
                 obj.Collection.Add(node);                
             }
