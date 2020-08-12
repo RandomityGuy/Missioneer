@@ -63,7 +63,7 @@ namespace Missioneer.Utils
         public SimGroup Import(string filename)
         {
             var rawMission = File.ReadLines(filename).ToList();
-
+            rawMission = rawMission.GetRange(rawMission.IndexOf("//--- OBJECT WRITE BEGIN ---"), rawMission.IndexOf("//--- OBJECT WRITE END ---") - rawMission.IndexOf("//--- OBJECT WRITE BEGIN ---") + 1);
             SimObject curobj = null;
             var status = new ImportStatus();
 

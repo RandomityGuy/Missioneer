@@ -1,10 +1,11 @@
 ﻿using Missioneer.Utils;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Missioneer
 {
-    public class SimGroup : SimObject
+    public class SimGroup : SimObject, IEnumerable<SimObject>
     {
         public List<SimObject> GroupItems;
         public SimGroup()
@@ -29,6 +30,16 @@ namespace Missioneer
         {
             obj.Collection = this;
             GroupItems.Add(obj);
+        }
+
+        public IEnumerator<SimObject> GetEnumerator()
+        {
+            return ((IEnumerable<SimObject>)GroupItems).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<SimObject>)GroupItems).GetEnumerator();
         }
     }
 }
